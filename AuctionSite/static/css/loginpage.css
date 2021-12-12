@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(219,226,226);
+}
+
+
+form{
+    margin-top: 2%;
+}
+#form{
+    background:white;
+}
+
+@media only screen and (max-width: 600px) {
+    .container
+    {
+        margin-top: 3%;
+    }
+    button{
+        margin-bottom: 3%;
+    }
+    #form{
+        margin-top: 2%;
+    }
+}
+@media only screen and (min-width: 768px){
+    .container{
+        margin-top: 5%;
+    }
+    button{
+        margin-bottom: 3%;
+    }
+    #form{
+        margin-top: 2%;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .container{
+        margin-top: 10%;
+    }
+    #form{
+        margin-top: 0;
+    }
+}
