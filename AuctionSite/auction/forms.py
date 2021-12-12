@@ -11,4 +11,10 @@ class productForm(forms.ModelForm):
     deadline = forms.SplitDateTimeField(widget=AdminSplitDateTime())
     class Meta:
         model = product
-        fields = ['product_name','product_description','starting_bid','deadline','cover_photo',]
+        fields = ['product_name','product_description','starting_bid','deadline','cover_photo']
+
+
+class imagesForm(forms.ModelForm):
+    class Meta:
+        model = images
+        fields = ['image']
