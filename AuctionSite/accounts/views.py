@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from .forms import userRegistration,profileRegistration
 # Create your views here.
 
 def loginPage(request):
@@ -11,5 +11,11 @@ def homePage(request):
 
 
 def registration(request):
-    return render (request,'registration.html')
+    userForm = userRegistration()
+    profileForm = profileRegistration()
+    context = {
+        'userForm':userForm,
+        'profileForm':profileForm
+    }
+    return render (request,'registration.html',context)
 
