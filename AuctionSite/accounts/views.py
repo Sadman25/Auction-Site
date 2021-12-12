@@ -48,3 +48,7 @@ def registration(request):
     }
     return render (request,'registration.html',context)
 
+
+def logoutUser(request):
+    logout(request)
+    return redirect('loginPage')
