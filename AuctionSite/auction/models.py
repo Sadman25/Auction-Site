@@ -9,11 +9,13 @@ from django.db.models.fields import DateField
 class status (models.Model):
     status = models.CharField(max_length=20, unique=True)
     
+    def __str__(self) -> str:
+        return 'Product Status: ' + self.status
 
 class product(models.Model):
     product_name= models.CharField(max_length=50, blank=False)
     product_description=models.CharField(max_length=500,null=False, blank=False)
-    cover_photo=models.ImageField(null=False, blank=False,upload_to='product_cover_photos/')
+    cover_photo=models.ImageField(null=False, blank=False)
     starting_bid = models.CharField(max_length=10, null=False, blank=False)
     deadline = models.DateTimeField()
     owner = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
@@ -24,7 +26,7 @@ class product(models.Model):
 
 class images(models.Model):
     product=models.ForeignKey(product,on_delete=models.CASCADE)
-    image=models.ImageField(upload_to='product_photos/',blank=False, null=False)
+    image=models.ImageField(blank=False, null=False)
 
     def __str__(self):
         return self.product.owner.username

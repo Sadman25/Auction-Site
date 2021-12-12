@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class profile (models.Model):
     user = models.OneToOneField(User,null=False,blank=False, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(null=False,blank=False,upload_to='profile_pictures')
+    profile_picture = models.ImageField(null=False,blank=False)
 
 
     def __str__(self) -> str:
