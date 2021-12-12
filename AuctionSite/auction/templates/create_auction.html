@@ -3,5 +3,12 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+<div class="container">
+    <form method='POST' action=''>
+        {% csrf_token %}
+        {{ newProduct.media }}
+        {{ newProduct.as_p }}
+    </form>
+</div>
 
 {% endblock %}
