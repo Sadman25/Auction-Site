@@ -4,7 +4,8 @@ from .models import product, images
 from django.forms import modelformset_factory
 # Create your views here.
 def homePage(request):
-    context = {}
+    products = product.objects.all().order_by('-id')
+    context = {'products':products}
     return render (request, 'homepage.html',context)
 
 def createAuction(request):

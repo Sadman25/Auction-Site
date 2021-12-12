@@ -20,7 +20,7 @@ class product(models.Model):
     product_status = models.ForeignKey(status, null=True, on_delete= models.SET_NULL)
 
     def __str__(self) -> str:
-        return self.product_name + self.owner.username
+        return 'Product: '+self.product_name + ' Owner: '+ self.owner.username
 
 class images(models.Model):
     product=models.ForeignKey(product,on_delete=models.CASCADE)

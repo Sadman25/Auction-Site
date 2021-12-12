@@ -1,76 +1,19 @@
+{% extends 'base_homepage.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% block content %}
 
-    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
-    <script type="text/javascript" src="{% static '/admin/js/core.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %} " />
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %} "/> -->
-    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/global.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}" />
-    <title>My Auction</title>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'homePage' %}">
-            <img src="/static/images/auction_logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'homePage' %}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'createAuction' %}">Create </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">My Posts </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{request.user}}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Your Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'logoutUser' %}">Log out</a>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    {% block content%}
+{% for product in products %}
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'product_cover_photos/{{product.cover_photo.url}}' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Name: {{product.product_name}}</h5>
+      <p class="card-text">Starting Bid: {{product.starting_bid}} </p>
+      <p class="card-text">Deadline: {{product.deadline}} </p>
+      <a href="#" class="btn btn-primary">View Details</a>
+    </div>
+  </div>
 
 
-    {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+{% endfor %}
+{% endblock %}
