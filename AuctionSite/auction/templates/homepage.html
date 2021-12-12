@@ -28,7 +28,7 @@
                     <a class="nav-link" href="{% url 'homePage' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Create </a>
+                    <a class="nav-link" href="{% url 'createAuction' %}">Create </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">My Posts </a>
@@ -44,7 +44,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Your Profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" >Log out</a>
+                        <a class="dropdown-item" href="{% url 'logoutUser' %}" >Log out</a>
 
                     </div>
                 </li>
