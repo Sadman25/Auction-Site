@@ -5,5 +5,6 @@ from .import views
 urlpatterns = [
     path('homePage',views.homePage,name='homePage'),
     path('createAuction',views.createAuction,name='createAuction'),
-    path('product_details/<int:pk>/',views.product_details, name='product_details'),
+    path('productDetails/<int:pk>/',views.productDetails, name='productDetails'),
+    path('myPosts',views.myPosts, name='myPosts'),
 ]

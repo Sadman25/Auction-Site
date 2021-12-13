@@ -36,7 +36,13 @@ def createAuction(request):
         return render (request, 'create_auction.html',context)
 
 
-def product_details(request,pk):
+def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
     context = {'product_details':product_details}
     return render (request,'product_details.html',context)
+
+
+def myPosts(request):
+    products = product.objects.all()
+    context = {'products':products}
+    return render (request, 'myposts.html',context)
