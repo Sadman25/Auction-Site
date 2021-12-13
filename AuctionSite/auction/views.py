@@ -11,22 +11,22 @@ def homePage(request):
 def createAuction(request):
     
     newProduct = productForm()
-    additionalImages = modelformset_factory(images, form=imagesForm,extra=3)
+    additionalImages= imagesForm()
 
     if request.method == 'POST':
         newProduct = productForm(request.POST,request.FILES)
-        imagesFormset = additionalImages(request.POST , request.FILES, queryset=images.objects.none())
+        additionalImages= request.FILES.getlist('image')
 
         if newProduct.is_valid():
             product = newProduct.save(commit=False)
             product.owner = request.user
             product.save()
 
-            for form in imagesFormset.cleaned_data:
-                if form:
-                    image = form['image']
-                    photo = images(product=product, image=image)
-                    photo.save()
+            for i in additionalImages:
+                photo = images.objects.create(
+                    product = product,
+                    image = i
+                )
 
             return redirect('homePage')
 

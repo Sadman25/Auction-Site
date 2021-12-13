@@ -8,7 +8,12 @@
         {% csrf_token %}
         {{ newProduct.media }}
         {{ newProduct.as_p }}
-        {{ additionalImages|crispy}}
+
+        <div id="div_id_image" class="form-group"> <label for="id_image" class=" requiredField">
+                Image<span class="asteriskField">*</span> </label>
+            <div class=""> <input type="file" name="image" accept="image/*" class="clearablefileinput form-control-file"
+                    required="" multiple id="id_image"> </div>
+        </div>
         <button type="submit" class="btn btn-primary" style="position: center;">Submit</button>
     </form>
 </div>
