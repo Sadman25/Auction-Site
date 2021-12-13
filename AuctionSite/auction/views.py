@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 from .forms import productForm,imagesForm
 from .models import product, images
-from django.forms import modelformset_factory
+from django.contrib.auth.models import User
+from accounts.models import profile
 # Create your views here.
 def homePage(request):
     products = product.objects.all().order_by('-id')
@@ -46,3 +47,11 @@ def myPosts(request):
     products = product.objects.all()
     context = {'products':products}
     return render (request, 'myposts.html',context)
+
+
+def myProfile(request,pk):
+
+    previousInfo = User.objects.get(id=pk)
+
+    context = {'previousInfo':previousInfo}
+    return render (request, 'myProfile.html',context)   

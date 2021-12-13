@@ -7,4 +7,5 @@ urlpatterns = [
     path('createAuction',views.createAuction,name='createAuction'),
     path('productDetails/<int:pk>/',views.productDetails, name='productDetails'),
     path('myPosts',views.myPosts, name='myPosts'),
+    path('myProfile/<int:pk>/',views.myProfile, name='myProfile'),
 ]
