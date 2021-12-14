@@ -1,6 +1,7 @@
 #createAuction {
     margin-top: 5%;
-    background-color: antiquewhite;
+    background-color: #2C3E50;
+    color: white;
 }
 
 #createAuction h3{
@@ -12,4 +13,7 @@
 #createAuction button{
     margin-bottom: 2%;
     
+}
+#createAuction label{
+    color: white;
 }

@@ -1,21 +1,52 @@
 {% extends 'base_homepage.html' %}
 {% load static %}
-
 {% block content %}
 
-<div class="container">
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      {% for product in products %}
+      {% if product.owner == user %}
+      <div class="card-deck">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{product.cover_photo.url}}" alt="Product Photo">
+          <div class="card-body">
+            <h5 class="card-title">Name: {{product.product_name}}</h5>
+            <p class="card-text">Starting Bid: {{product.starting_bid}} </p>
+            <p class="card-text">Deadline: {{product.deadline}} </p>
+            <a href="{% url 'productDetails' product.pk %}" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+{% endif %}  
+{% endfor%} -->
+
+<table class="table" id="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Deadline</th>
+      <th scope="col">Total Bids</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for product in products %}
     {% if product.owner == user %}
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{product.cover_photo.url}}" alt="Product Photo">
-      <div class="card-body">
-        <h5 class="card-title">Name: {{product.product_name}}</h5>
-        <p class="card-text">Starting Bid: {{product.starting_bid}} </p>
-        <p class="card-text">Deadline: {{product.deadline}} </p>
-        <a href="{% url 'productDetails' product.pk %}" class="btn btn-primary">View Details</a>
-      </div>
-    </div>
-
+    <tr>
+      <th scope="row">{{product.product_name}}</th>
+      <td>{{product.deadline}}</td>
+      <td>will be added later</td>
+      <td><a href="{% url 'productDetails' product.pk %}" class="btn btn-primary">View Details</a></td>
+    </tr>
     {% endif %}  
 {% endfor%}
+  </tbody>
+</table>
+
 {% endblock %}
