@@ -3,6 +3,7 @@ from .forms import productForm,imagesForm
 from .models import product, images
 from django.contrib.auth.models import User
 from accounts.models import profile
+from accounts.forms import userRegistration,profileRegistration
 # Create your views here.
 def homePage(request):
     products = product.objects.all().order_by('-id')
@@ -51,7 +52,19 @@ def myPosts(request):
 
 def myProfile(request,pk):
 
-    previousInfo = User.objects.get(id=pk)
+    previousInfo = profile.objects.get(id=pk)
+    editUser = userRegistration(instance=request.user)
+    editProfile = profileRegistration(instance=previousInfo)
 
-    context = {'previousInfo':previousInfo}
-    return render (request, 'myProfile.html',context)   
+    if request.method == 'POST':
+        editUser = userRegistration(request.POST,instance=request.user)
+        editProfile = profileRegistration(request.POST,request.FILES,instance=previousInfo)
+        if editUser.is_valid() and editProfile.is_valid():
+            editUser.save()
+            editProfile.save()
+    
+    else:
+        context = {'previousInfo':previousInfo,
+        'editUser':editUser,
+        'editProfile':editProfile}
+        return render (request, 'myProfile.html',context)   
