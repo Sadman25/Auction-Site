@@ -40,7 +40,9 @@ def createAuction(request):
 
 def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
-    context = {'product_details':product_details}
+    product_images = images.objects.filter(product=product.objects.get(id=pk))
+    context = {'product_details':product_details,
+    'product_images':product_images}
     return render (request,'product_details.html',context)
 
 
