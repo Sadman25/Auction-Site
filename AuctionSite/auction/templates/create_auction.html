@@ -3,19 +3,35 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container">
-    <form method='POST' action="{% url 'createAuction' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ newProduct.media }}
-        {{ newProduct.as_p }}
-
-        <div id="div_id_image" class="form-group"> <label for="id_image" class=" requiredField">
-                Image<span class="asteriskField">*</span> </label>
-            <div class=""> <input type="file" name="image" accept="image/*" class="clearablefileinput form-control-file"
-                    required="" multiple id="id_image"> </div>
+<div class="container" id="createAuction">
+    <div class="row">
+        <div class="col-lg-6">
+            <h3><b>Instructions </b></h3>
+            <p><b>Product Category:</b>Choose your desired one from the dropdown section</p> 
+            <p><b>Product Name:</b> Input the product name here. Maximum character(letters/numbers) length is 50</p> 
+            <p><b>Product Description:</b> The Description of your product goes here. Maximum character(letters/numbers) length is 500</p> 
+            <p><b>Starting Bid:</b> Put the minimum bid you want to start auction with</p> 
+            <p><b>Deadline:</b>Every auction has a deadline. Use the calendar icon and clock icon to specify the exact date and time of the deadline</p> 
+            <p><b>Cover Photo:</b> Choose a suitable cover photo for your product</p> 
+            <p><b>Product Status:</b>Choose SOLD when your product is finally sold.</p> 
+            <p><b>Image:</b>You can put one or multiple images in this option.Use suitable images of your product</p> 
         </div>
-        <button type="submit" class="btn btn-primary" style="position: center;">Submit</button>
-    </form>
+        <div class="col-lg-6">
+            <h3><b>Auction Post Form</b></h3>
+            <form method='POST' action="{% url 'createAuction' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ newProduct.media }}
+                {{ newProduct.as_p }}
+                <div id="div_id_image" class="form-group"> <label for="id_image" class=" requiredField">
+                        Image<span class="asteriskField">*</span> </label>
+                    <div class=""> <input type="file" name="image" accept="image/*" class="clearablefileinput form-control-file"
+                            required="" multiple id="id_image"> </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="position: center;">Submit</button>
+            </form> 
+        </div>
+    </div>
+    
 </div>
 
 {% endblock %}

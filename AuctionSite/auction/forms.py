@@ -7,11 +7,11 @@ from django.contrib.admin.widgets import AdminSplitDateTime
 
 
 class productForm(forms.ModelForm):
-    product_description = forms.CharField(widget=forms.Textarea)
+    product_description = forms.CharField(widget=forms.Textarea(attrs={'rows':2, 'cols':30}))
     deadline = forms.SplitDateTimeField(widget=AdminSplitDateTime())
     class Meta:
         model = product
-        fields = ['product_name','product_description','starting_bid','deadline','cover_photo']
+        fields = ['product_category','product_name','product_description','starting_bid','deadline','cover_photo','product_status']
 
 
 class imagesForm(forms.ModelForm):

@@ -1,0 +1,15 @@
+#createAuction {
+    margin-top: 5%;
+    background-color: antiquewhite;
+}
+
+#createAuction h3{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+#createAuction button{
+    margin-bottom: 2%;
+    
+}

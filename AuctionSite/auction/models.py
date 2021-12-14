@@ -11,14 +11,14 @@ class category (models.Model):
     category = models.CharField(max_length=20, unique=True)
     
     def __str__(self) -> str:
-        return 'Catergory: ' + self.category
+        return self.category
 
 
 class status (models.Model):
     status = models.CharField(max_length=20, unique=True)
     
     def __str__(self) -> str:
-        return 'Product Status: ' + self.status
+        return self.status
 
 class product(models.Model):
     product_name= models.CharField(max_length=50, blank=False)
