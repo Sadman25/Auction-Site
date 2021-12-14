@@ -41,8 +41,19 @@ def createAuction(request):
 def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
     product_images = images.objects.filter(product=product.objects.get(id=pk))
+    
+    editProduct = productForm(instance=product_details)
+
+    if request.method == 'POST':
+        editProduct = productForm(request.POST,request.FILES,instance=productDetails)
+        if editProduct.is_valid():
+            editProduct.save()
+            return redirect ('productDetails')
+    
     context = {'product_details':product_details,
-    'product_images':product_images}
+    'product_images':product_images,
+    'editProduct':editProduct
+    }
     return render (request,'product_details.html',context)
 
 
