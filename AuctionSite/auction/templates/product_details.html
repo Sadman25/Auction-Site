@@ -29,13 +29,18 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
               </a>
-            </div>             
+            </div>
+            <p id="product_description">{{product_details.product_description}}</p>             
         </div>
         <div class="col-lg-4" id="product_info">
             <h3>Product Information </h3>
-            <p>Name: {{product_details.product_name}}<br> 
-               Starting Bid: {{ product_details.starting_bid }}
-               </p>
+            <p>
+              <b>Category: </b>{{ product_details.product_category }}<br> 
+              <b>Name: </b>{{product_details.product_name}}<br> 
+              <b>Starting Bid: </b>{{ product_details.starting_bid }} TK<br> 
+              <b>Auction Deadline: </b>{{ product_details.deadline }}<br> 
+              <b>Current Status: </b><b>{{ product_details.product_status }}</b><br> 
+            </p>
             <!-- <form>
               {% if product_details.owner == user %}
                 {{ editProduct| crispy}}

@@ -1,0 +1,15 @@
+#product {
+    margin-top: 2%;
+    background-color: #383E44;
+    color: white;
+}
+
+#product h3{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+#product_description{
+    margin-top: 2%;
+}
