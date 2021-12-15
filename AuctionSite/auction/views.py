@@ -42,6 +42,14 @@ def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
     product_images = images.objects.filter(product=product.objects.get(id=pk))
     
+    context = {'product_details':product_details,
+    'product_images':product_images,
+    
+    }
+    return render (request,'product_details.html',context)
+
+def editProduct(request,pk):
+    product_details = product.objects.get(id=pk)
     editProduct = productForm(instance=product_details)
 
     if request.method == 'POST':
@@ -51,11 +59,9 @@ def productDetails(request,pk):
             return redirect ('productDetails')
     
     context = {'product_details':product_details,
-    'product_images':product_images,
     'editProduct':editProduct
     }
-    return render (request,'product_details.html',context)
-
+    return render (request,'product_edit.html',context)
 
 def myPosts(request):
     products = product.objects.all()

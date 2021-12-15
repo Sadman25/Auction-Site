@@ -41,11 +41,11 @@
               <b>Auction Deadline: </b>{{ product_details.deadline }}<br> 
               <b>Current Status: </b><b>{{ product_details.product_status }}</b><br> 
             </p>
-            <!-- <form>
-              {% if product_details.owner == user %}
-                {{ editProduct| crispy}}
-              {% endif %}
-            </form> -->
+            {% if product_details.owner == user %}
+            <a class="btn btn-primary" href="{% url 'editProduct' product_details.pk %}" role="button">Edit</a>
+            <a class="btn btn-danger" href="#" role="button">Delete</a>
+            {% endif %}
+            
             </div>
         </div>
 </div>
