@@ -18,17 +18,12 @@
         </div>
         <div class="col-lg-6">
             <h3><b>Auction Post Form</b></h3>
-            <form method='POST' action="{% url 'editProduct' %}" enctype="multipart/form-data">
+            <form method='POST' action="{% url 'editProduct' product_details.pk %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% if product_details.owner == user %}
                 {{ editProduct.media}}
                 {{ editProduct.as_p}}
                 {% endif %}
-                <div id="div_id_image" class="form-group"> <label for="id_image" class=" requiredField">
-                        Image<span class="asteriskField">*</span> </label>
-                    <div class=""> <input type="file" name="image" accept="image/*"
-                            class="clearablefileinput form-control-file" required="" multiple id="id_image"> </div>
-                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

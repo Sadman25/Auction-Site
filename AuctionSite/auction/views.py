@@ -84,6 +84,7 @@ def myProfile(request,pk):
         if editUser.is_valid() and editProfile.is_valid():
             editUser.save()
             editProfile.save()
+            return redirect ('homePage')
     
     else:
         context = {'previousInfo':previousInfo,

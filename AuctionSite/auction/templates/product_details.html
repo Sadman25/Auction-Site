@@ -38,12 +38,13 @@
               <b>Category: </b>{{ product_details.product_category }}<br><br>
               <b>Name: </b>{{product_details.product_name}}<br><br> 
               <b>Starting Bid: </b>{{ product_details.starting_bid }} TK<br><br>
-              <b>Auction Deadline: </b>{{ product_details.deadline }}<br><br> 
+              <b>Auction Deadline: </b>{{ product_details.deadline }}<br><br>
+              <b>Owner: </b>{{ product_details.owner.username }}<br><br> 
               <b>Current Status: </b><b>{{ product_details.product_status }}</b><br><br>
             </p>
             {% if product_details.owner == user %}
             <a class="btn btn-primary" href="{% url 'editProduct' product_details.pk %}" role="button">Edit</a>
-            <a class="btn btn-danger" id="deleteProduct" href="#" role="button">Delete</a>
+            <a class="btn btn-danger" id="deleteProduct" ahref="#" role="button">Delete</a>
             {% endif %}
             <form method='POST' action="" enctype="multipart/form-data">
               {% csrf_token %}

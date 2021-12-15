@@ -6,7 +6,7 @@
 
 #product h3{
     margin-top: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 4%;
     text-align: center;
 }
 
@@ -17,4 +17,8 @@
 #product label{
     margin-top: 5%;
     color: white;
+}
+
+#product button{
+    margin-bottom: 5%;
 }
