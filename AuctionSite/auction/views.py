@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
-from .forms import productForm,imagesForm
-from .models import product, images
+from .forms import productForm,imagesForm, biddingForm
+from .models import product, images, bidding
 from django.contrib.auth.models import User
 from accounts.models import profile
 from accounts.forms import userRegistration,profileRegistration
@@ -41,9 +41,12 @@ def createAuction(request):
 def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
     product_images = images.objects.filter(product=product.objects.get(id=pk))
+
+    newBid = biddingForm()
     
     context = {'product_details':product_details,
     'product_images':product_images,
+    'newBid':newBid
     
     }
     return render (request,'product_details.html',context)

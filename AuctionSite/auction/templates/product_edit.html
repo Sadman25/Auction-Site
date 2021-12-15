@@ -18,7 +18,7 @@
         </div>
         <div class="col-lg-6">
             <h3><b>Auction Post Form</b></h3>
-            <form method='POST' action="{% url 'createAuction' %}" enctype="multipart/form-data">
+            <form method='POST' action="{% url 'editProduct' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% if product_details.owner == user %}
                 {{ editProduct.media}}

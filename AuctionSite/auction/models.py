@@ -5,14 +5,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.fields import DateField
 # Create your models here.
-
-
 class category (models.Model):
     category = models.CharField(max_length=20, unique=True)
     
     def __str__(self) -> str:
         return self.category
-
 
 class status (models.Model):
     status = models.CharField(max_length=20, unique=True)
@@ -39,3 +36,11 @@ class images(models.Model):
 
     def __str__(self):
         return self.product.owner.username
+
+class bidding(models.Model):
+    bid = models.PositiveIntegerField(null=False, blank=False)
+    product=models.ForeignKey(product,on_delete=models.CASCADE)
+    bidder = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
+
+    def __str__(self):
+        return self.product.product_name + ' '+self.bidder.username
