@@ -44,6 +44,15 @@ def productDetails(request,pk):
 
     newBid = biddingForm()
     
+    if request.method == 'POST':
+        newBid = biddingForm(request.POST)
+        if newBid.is_valid():
+            newBid = newBid.save(commit=False)
+            newBid.bidder = request.user
+            newBid.product = product.objects.get(id=pk)
+            newBid.save()
+            return redirect('productDetails')
+
     context = {'product_details':product_details,
     'product_images':product_images,
     'newBid':newBid
