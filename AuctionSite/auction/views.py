@@ -4,6 +4,7 @@ from .models import product, images, bidding
 from django.contrib.auth.models import User
 from accounts.models import profile
 from accounts.forms import userRegistration,profileRegistration
+import datetime
 # Create your views here.
 def homePage(request):
     products = product.objects.all().order_by('-id')
@@ -41,7 +42,7 @@ def createAuction(request):
 def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
     product_images = images.objects.filter(product=product.objects.get(id=pk))
-    allBiddings = bidding.objects.filter(product=product.objects.get(id=pk))
+    allBiddings = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-id')
 
     newBid = biddingForm()
     
@@ -84,6 +85,8 @@ def editBid(request,pk):
     if request.method == 'POST':
         editBid = biddingForm(request.POST,instance=previousBid)
         if editBid.is_valid():
+            editBid = editBid.save(commit=False)
+            editBid.time = datetime.datetime.now()
             editBid.save()
             return HttpResponseRedirect (product_details.get_absolute_url())
 

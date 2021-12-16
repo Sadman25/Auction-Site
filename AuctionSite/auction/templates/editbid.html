@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container" id="profile">
-    <h2>Your current bid: {{previousBid.bid}}</h2>
+    <h3>Your current bid: {{previousBid.bid}}</h3>
     <form method='POST' action="" enctype="multipart/form-data">
         {% csrf_token %}
         {{ editBid|crispy }}

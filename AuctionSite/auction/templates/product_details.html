@@ -59,6 +59,7 @@
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Bid</th>
+                <th scope="col">Bid time</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -67,6 +68,7 @@
               <tr>
                 <td>{{bidding.bidder.username}}</td>
                 <td>{{bidding.bid}}</td>
+                <td>{{bidding.time}}</td>
                 {% if product_details.owner == user %}
                 <td><a class="btn btn-primary" href="{% url 'editBid' bidding.pk %}" role="button">Edit Bid</a></td>
                 {% endif %}
