@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponseRedirect
 from .forms import productForm,imagesForm, biddingForm
 from .models import product, images, bidding
 from django.contrib.auth.models import User
@@ -52,7 +52,7 @@ def productDetails(request,pk):
             newBid.bidder = request.user
             newBid.product = product.objects.get(id=pk)
             newBid.save()
-            return redirect('productDetails')
+            return HttpResponseRedirect(product_details.get_absolute_url())
 
     context = {'product_details':product_details,
     'product_images':product_images,
@@ -66,10 +66,10 @@ def editProduct(request,pk):
     editProduct = productForm(instance=product_details)
 
     if request.method == 'POST':
-        editProduct = productForm(request.POST,request.FILES,instance=productDetails)
+        editProduct = productForm(request.POST,request.FILES,instance=product_details)
         if editProduct.is_valid():
             editProduct.save()
-            return redirect ('productDetails')
+            return HttpResponseRedirect(product_details.get_absolute_url())
     
     context = {'product_details':product_details,
     'editProduct':editProduct
@@ -89,12 +89,12 @@ def myProfile(request,pk):
     editProfile = profileRegistration(instance=previousInfo)
 
     if request.method == 'POST':
-        editUser = userRegistration(request.POST,instance=request.user)
+        editUser = userRegistration(request.POST,instance=userRegistration(instance=request.user))
         editProfile = profileRegistration(request.POST,request.FILES,instance=previousInfo)
         if editUser.is_valid() and editProfile.is_valid():
             editUser.save()
             editProfile.save()
-            return redirect ('homePage')
+            return HttpResponseRedirect (previousInfo.get_absolute_url())
     
     else:
         context = {'previousInfo':previousInfo,
