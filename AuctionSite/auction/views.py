@@ -76,6 +76,27 @@ def editProduct(request,pk):
     }
     return render (request,'product_edit.html',context)
 
+def editBid(request,pk):
+    previousBid = bidding.objects.get(id=pk)
+    editBid = biddingForm(instance=previousBid)
+    product_details = previousBid.product
+
+    if request.method == 'POST':
+        editBid = biddingForm(request.POST,instance=previousBid)
+        if editBid.is_valid():
+            editBid.save()
+            return HttpResponseRedirect (product_details.get_absolute_url())
+
+    context={
+        'previousBid':previousBid,
+        'editBid':editBid,
+        'product_details':product_details
+    }
+
+    return render (request,'editbid.html',context)
+    
+
+
 def myPosts(request):
     products = product.objects.all()
     context = {'products':products}

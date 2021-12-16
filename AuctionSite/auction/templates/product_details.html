@@ -68,7 +68,7 @@
                 <td>{{bidding.bidder.username}}</td>
                 <td>{{bidding.bid}}</td>
                 {% if product_details.owner == user %}
-                <td><a class="btn btn-primary" href="#" role="button">Edit Bid</a></td>
+                <td><a class="btn btn-primary" href="{% url 'editBid' bidding.pk %}" role="button">Edit Bid</a></td>
                 {% endif %}
               </tr>
             </tbody>
