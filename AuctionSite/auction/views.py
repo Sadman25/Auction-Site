@@ -41,6 +41,7 @@ def createAuction(request):
 def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
     product_images = images.objects.filter(product=product.objects.get(id=pk))
+    allBiddings = bidding.objects.filter(product=product.objects.get(id=pk))
 
     newBid = biddingForm()
     
@@ -55,8 +56,8 @@ def productDetails(request,pk):
 
     context = {'product_details':product_details,
     'product_images':product_images,
-    'newBid':newBid
-    
+    'newBid':newBid,
+    'allBiddings':allBiddings,
     }
     return render (request,'product_details.html',context)
 

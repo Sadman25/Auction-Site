@@ -1,7 +1,6 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.fields import DateField
 # Create your models here.
@@ -29,6 +28,9 @@ class product(models.Model):
 
     def __str__(self) -> str:
         return 'Product: '+self.product_name + ' Owner: '+ self.owner.username
+
+    def get_absolute_url(self):
+        return reverse('productDetails', kwargs={'pk':self.id})
 
 class images(models.Model):
     product=models.ForeignKey(product,on_delete=models.CASCADE)

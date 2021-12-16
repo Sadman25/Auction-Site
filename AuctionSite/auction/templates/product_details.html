@@ -51,8 +51,29 @@
               {{ newBid|crispy }}           
               <button type="submit" class="btn btn-primary">Place Bid</button>
           </form>
-            
             </div>
+        </div>
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Bid</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for bidding in allBiddings %}
+              <tr>
+                <td>{{bidding.bidder.username}}</td>
+                <td>{{bidding.bid}}</td>
+                {% if product_details.owner == user %}
+                <td><a class="btn btn-primary" href="#" role="button">Edit Bid</a></td>
+                {% endif %}
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
         </div>
 </div>
   
