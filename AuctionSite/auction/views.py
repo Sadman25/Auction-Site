@@ -135,7 +135,7 @@ def myProfile(request,pk):
         context = {'previousInfo':previousInfo,
         'editUser':editUser,
         'editProfile':editProfile}
-        return render (request, 'myProfile.html',context)   
+        return render (request, 'myprofile.html',context)   
 
 @login_required(login_url='loginPage')
 def about(request):
