@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import userRegistration,profileRegistration
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 # Create your views here.
@@ -18,10 +19,6 @@ def loginPage(request):
             
     
     return render (request,'loginpage.html')
-
-
-def homePage(request):
-    return render (request, 'homepage.html')
 
 
 def registration(request):
