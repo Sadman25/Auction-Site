@@ -42,8 +42,8 @@
         <b>Owner: </b>{{ product_details.owner.username }}<br><br>
         <b>Current Status: </b><b>{{ product_details.product_status }}</b><br><br>
         <b>Total Bids: </b><b>{{ totalBids }}</b><br><br>
-        <!-- <b>Highest Bid: </b><b></b><br><br>
-        <b>Highest Bidder: </b><b></b><br><br> -->
+        <b>Highest Bid: </b><b>{{highestBidder.bid}}</b> <br><br>
+        <b>Highest Bidder: </b><b>{{highestBidder.bidder.username}}</b> <br><br>
       </p>
       {% if product_details.owner == user %}
       <a class="btn btn-primary" href="{% url 'editProduct' product_details.pk %}" role="button">Edit</a>
@@ -57,6 +57,7 @@
     </div>
   </div>
   <div class="row">
+    <h2> Bidding Table </h2>
     <table class="table">
       <thead>
         <tr>

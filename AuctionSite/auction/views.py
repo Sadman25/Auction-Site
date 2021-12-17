@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render, HttpResponseRedirect
+from django.db.models import Max
 from .forms import productForm,imagesForm, biddingForm
 from .models import product, images, bidding
 from django.contrib.auth.models import User
@@ -44,6 +45,8 @@ def productDetails(request,pk):
     product_images = images.objects.filter(product=product.objects.get(id=pk))
     allBiddings = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-time')
     totalBids = bidding.objects.filter(product=product.objects.get(id=pk)).count()
+
+    highestBidder = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-bid')[0]
     newBid = biddingForm()
     
     if request.method == 'POST':
@@ -59,7 +62,8 @@ def productDetails(request,pk):
     'product_images':product_images,
     'newBid':newBid,
     'allBiddings':allBiddings,
-    'totalBids':totalBids
+    'totalBids':totalBids,
+    'highestBidder':highestBidder
     }
     return render (request,'product_details.html',context)
 
