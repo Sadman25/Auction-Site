@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/createAuction.css' %}">
     <link rel="stylesheet" href="{% static 'css/myposts.css' %}">
     <link rel="stylesheet" href="{% static 'css/myprofile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
     <style>body{background-color: rgb(219,226,226);}</style> <!-- single css for changing body color of every page-->
 
 
@@ -46,7 +47,7 @@
                     <a class="nav-link" href="{% url 'myPosts' %}">My Posted Items </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="{% url 'about' %}">About(Must Read)</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

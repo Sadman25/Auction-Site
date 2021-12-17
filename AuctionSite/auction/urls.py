@@ -10,4 +10,5 @@ urlpatterns = [
     path('myProfile/<int:pk>/',views.myProfile, name='myProfile'),
     path('editProduct/<int:pk>/',views.editProduct,name='editProduct'),
     path('editBid/<int:pk>/',views.editBid,name='editBid'),
+    path('about',views.about,name='about'),
 ]

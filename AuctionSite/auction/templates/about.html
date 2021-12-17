@@ -1,0 +1,19 @@
+{% extends 'base_homepage.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container" id="about">
+    <h1>Welcome to My Auction</h1>
+    <ul>Few issues about the website:
+        <li>Edit Profile works but somehow it fails to render the page. So after editing profile, you will be logged out</li>
+        <li>Although the latest and highest bid is shown at top of the table, it fails to show the actual winner of a particular product </li>
+        <li>Once you added additional images for your products, you can not edit them. Only the cover photo can be edited.</li>
+        <li>All these issues will be fixed soon. Thank you for staying with us</li>
+    </ul>
+</div>
+
+
+
+{% endblock %}

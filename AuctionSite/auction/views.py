@@ -43,7 +43,7 @@ def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
     product_images = images.objects.filter(product=product.objects.get(id=pk))
     allBiddings = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-time')
-
+    totalBids = bidding.objects.filter(product=product.objects.get(id=pk)).count()
     newBid = biddingForm()
     
     if request.method == 'POST':
@@ -59,6 +59,7 @@ def productDetails(request,pk):
     'product_images':product_images,
     'newBid':newBid,
     'allBiddings':allBiddings,
+    'totalBids':totalBids
     }
     return render (request,'product_details.html',context)
 
@@ -118,10 +119,14 @@ def myProfile(request,pk):
         if editUser.is_valid() and editProfile.is_valid():
             editUser.save()
             editProfile.save()
-            return HttpResponseRedirect (previousInfo.get_absolute_url())
+            return redirect('/')
     
     else:
         context = {'previousInfo':previousInfo,
         'editUser':editUser,
         'editProfile':editProfile}
         return render (request, 'myProfile.html',context)   
+
+
+def about(request):
+    return render(request,'about.html')

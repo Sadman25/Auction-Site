@@ -41,8 +41,9 @@
         <b>Auction Deadline: </b>{{ product_details.deadline }}<br><br>
         <b>Owner: </b>{{ product_details.owner.username }}<br><br>
         <b>Current Status: </b><b>{{ product_details.product_status }}</b><br><br>
-        <b>Highest Bid: </b><b>{{highestBidder}}</b><br><br>
-        <b>Highest Bidder: </b><b></b><br><br>
+        <b>Total Bids: </b><b>{{ totalBids }}</b><br><br>
+        <!-- <b>Highest Bid: </b><b></b><br><br>
+        <b>Highest Bidder: </b><b></b><br><br> -->
       </p>
       {% if product_details.owner == user %}
       <a class="btn btn-primary" href="{% url 'editProduct' product_details.pk %}" role="button">Edit</a>
