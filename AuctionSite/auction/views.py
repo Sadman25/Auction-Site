@@ -42,7 +42,7 @@ def createAuction(request):
 def productDetails(request,pk):
     product_details = product.objects.get(id=pk)
     product_images = images.objects.filter(product=product.objects.get(id=pk))
-    allBiddings = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-id')
+    allBiddings = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-time')
 
     newBid = biddingForm()
     
