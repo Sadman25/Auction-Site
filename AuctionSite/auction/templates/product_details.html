@@ -47,7 +47,6 @@
       </p>
       {% if product_details.owner == user %}
       <a class="btn btn-primary" href="{% url 'editProduct' product_details.pk %}" role="button">Edit</a>
-      <a class="btn btn-danger" id="deleteProduct" ahref="#" role="button">Delete</a>
       {% endif %}
       <form method='POST' action="" enctype="multipart/form-data">
         {% csrf_token %}
