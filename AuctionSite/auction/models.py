@@ -4,18 +4,22 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.fields import DateField
 # Create your models here.
+
+#Category model will hold the type of product.
 class category (models.Model):
     category = models.CharField(max_length=20, unique=True)
     
     def __str__(self) -> str:
         return self.category
 
+#It will hold the information whether a product on auction is sold or bidding still going on
 class status (models.Model):
     status = models.CharField(max_length=20, unique=True)
     
     def __str__(self) -> str:
         return self.status
 
+#product model and its fields. It will contain neccessary information about a product in auction.
 class product(models.Model):
     product_name= models.CharField(max_length=50, blank=False)
     product_description=models.CharField(max_length=500,null=False, blank=False)
@@ -32,6 +36,7 @@ class product(models.Model):
     def get_absolute_url(self):
         return reverse('productDetails', kwargs={'pk':self.id})
 
+#images model will hold additional images of a particular product
 class images(models.Model):
     product=models.ForeignKey(product,on_delete=models.CASCADE)
     image=models.ImageField(blank=False, null=False)
@@ -39,6 +44,7 @@ class images(models.Model):
     def __str__(self):
         return self.product.owner.username
 
+#Bidding model will hold the bidding and bidder information of products.
 class bidding(models.Model):
     bid = models.PositiveIntegerField(null=False, blank=False)
     product=models.ForeignKey(product,on_delete=models.CASCADE)

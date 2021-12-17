@@ -8,7 +8,7 @@ from accounts.forms import userRegistration,profileRegistration
 import datetime
 # Create your views here.
 def homePage(request):
-    products = product.objects.all().order_by('-id')
+    products = product.objects.all().order_by('-id') #Latest products will be shown at 1st
     context = {'products':products}
     return render (request, 'homepage.html',context)
 
@@ -25,7 +25,7 @@ def createAuction(request):
             product = newProduct.save(commit=False)
             product.owner = request.user
             product.save()
-
+            #saving image one by one
             for i in additionalImages:
                 photo = images.objects.create(
                     product = product,
@@ -41,13 +41,13 @@ def createAuction(request):
 
 
 def productDetails(request,pk):
-    product_details = product.objects.get(id=pk)
-    product_images = images.objects.filter(product=product.objects.get(id=pk))
-    allBiddings = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-time')
-    totalBids = bidding.objects.filter(product=product.objects.get(id=pk)).count()
+    product_details = product.objects.get(id=pk)  #Contains information of a particular product
+    product_images = images.objects.filter(product=product.objects.get(id=pk)) #Contains information of a particular product's images
+    allBiddings = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-time') #Contains product bids and ordered by time(latest)
+    totalBids = bidding.objects.filter(product=product.objects.get(id=pk)).count() #counts the total bids of a product
 
-    highestBidder = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-bid')[0]
-    newBid = biddingForm()
+    highestBidder = bidding.objects.filter(product=product.objects.get(id=pk)).order_by('-bid')[0] #highest bidder information is stored here
+    newBid = biddingForm() #bidding form of a particular product
     
     if request.method == 'POST':
         newBid = biddingForm(request.POST)
@@ -69,7 +69,7 @@ def productDetails(request,pk):
 
 def editProduct(request,pk):
     product_details = product.objects.get(id=pk)
-    editProduct = productForm(instance=product_details)
+    editProduct = productForm(instance=product_details) #Form will contain previous information
 
     if request.method == 'POST':
         editProduct = productForm(request.POST,request.FILES,instance=product_details)
